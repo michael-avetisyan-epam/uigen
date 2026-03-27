@@ -2,7 +2,7 @@
 
 import { Message } from "ai";
 import { cn } from "@/lib/utils";
-import { User, Bot, Loader2 } from "lucide-react";
+import { User, Bot, Loader2, Sparkles, Layers, MousePointerClick, Wand2 } from "lucide-react";
 import { MarkdownRenderer } from "./MarkdownRenderer";
 
 interface MessageListProps {
@@ -13,12 +13,40 @@ interface MessageListProps {
 export function MessageList({ messages, isLoading }: MessageListProps) {
   if (messages.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center h-full px-4 text-center">
-        <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-blue-50 mb-4 shadow-sm">
-          <Bot className="h-7 w-7 text-blue-600" />
+      <div className="flex flex-col items-center justify-center h-full px-6 text-center">
+        {/* Glowing icon with gradient background */}
+        <div className="relative mb-6">
+          <div className="absolute inset-0 rounded-3xl bg-blue-400 opacity-20 blur-xl scale-150" />
+          <div className="relative flex items-center justify-center w-20 h-20 rounded-3xl bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg shadow-blue-200">
+            <Wand2 className="h-9 w-9 text-white" />
+          </div>
         </div>
-        <p className="text-neutral-900 font-semibold text-lg mb-2">Start a conversation to generate React components</p>
-        <p className="text-neutral-500 text-sm max-w-sm">I can help you create buttons, forms, cards, and more</p>
+
+        {/* Headline */}
+        <h2 className="text-neutral-900 font-bold text-2xl mb-2 tracking-tight">
+          Build something amazing
+        </h2>
+        <p className="text-neutral-500 text-sm max-w-xs mb-8 leading-relaxed">
+          Describe any UI component and I&apos;ll generate production-ready React + Tailwind code instantly.
+        </p>
+
+        {/* Feature chips */}
+        <div className="grid grid-cols-2 gap-2 w-full max-w-xs">
+          {[
+            { icon: Layers, label: "Cards & layouts" },
+            { icon: MousePointerClick, label: "Buttons & forms" },
+            { icon: Sparkles, label: "Animations" },
+            { icon: Bot, label: "Full components" },
+          ].map(({ icon: Icon, label }) => (
+            <div
+              key={label}
+              className="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-neutral-50 border border-neutral-200 text-xs text-neutral-600 font-medium"
+            >
+              <Icon className="h-3.5 w-3.5 text-blue-500 flex-shrink-0" />
+              {label}
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
