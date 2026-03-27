@@ -35,16 +35,38 @@ jobs:
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          mcp_config: .mcp.json
 
           # This is an optional setting that allows Claude to read CI results on PRs
           additional_permissions: |
             actions: read
-
           # Optional: Give a custom prompt to Claude. If this is not specified, Claude will perform the instructions specified in the comment that tagged it.
           # prompt: 'Update the pull request description to include a summary of changes.'
 
           # Optional: Add claude_args to customize behavior and configuration
           # See https://github.com/anthropics/claude-code-action/blob/main/docs/usage.md
           # or https://code.claude.com/docs/en/cli-reference for available options
-          # claude_args: '--allowed-tools Bash(gh pr:*)'
+          allowed_tools: |
+            mcp__playwright__browser_navigate
+            mcp__playwright__browser_click
+            mcp__playwright__browser_type
+            mcp__playwright__browser_fill_form
+            mcp__playwright__browser_snapshot
+            mcp__playwright__browser_take_screenshot
+            mcp__playwright__browser_press_key
+            mcp__playwright__browser_wait_for
+            mcp__playwright__browser_evaluate
+            mcp__playwright__browser_select_option
+            mcp__playwright__browser_hover
+            mcp__playwright__browser_drag
+            mcp__playwright__browser_close
+            mcp__playwright__browser_tabs
+            mcp__playwright__browser_navigate_back
+            mcp__playwright__browser_resize
+            mcp__playwright__browser_console_messages
+            mcp__playwright__browser_network_requests
+            mcp__playwright__browser_handle_dialog
+            mcp__playwright__browser_file_upload
+            mcp__playwright__browser_install
+            mcp__playwright__browser_run_code
 
